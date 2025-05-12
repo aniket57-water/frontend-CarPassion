@@ -1,7 +1,7 @@
 // D:\client_CarPassion4\src\services\api.js
 import axios from 'axios';
 
-const baseURL = 'https://car-passion-server-may11.onrender.com/'
+const baseURL = 'https://car-passion-server-may11.onrender.com/api'
 
 // Add retry logic for mobile devices
 const api = axios.create({
