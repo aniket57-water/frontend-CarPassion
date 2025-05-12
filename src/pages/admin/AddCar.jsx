@@ -1,3 +1,4 @@
+// D:\client_CarPassion4\src\pages\admin\AddCar.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
@@ -12,7 +13,7 @@ const AddCar = () => {
     model: "",
     year: "",
     price: "",
-    mileage: "",
+    kilometers_driven: "",
     color: "",
     fuelType: "",
     transmission: "Automatic",
@@ -54,7 +55,7 @@ const AddCar = () => {
       !formData.model ||
       !formData.year ||
       !formData.price ||
-      !formData.mileage ||
+      !formData.kilometers_driven ||
       !formData.color ||
       !formData.fuelType ||
       !formData.transmission ||
@@ -72,7 +73,7 @@ const AddCar = () => {
         ...formData,
         year: Number(formData.year),
         price: Number(formData.price),
-        mileage: Number(formData.mileage),
+        kilometers_driven: Number(formData.kilometers_driven),
       };
 
       const response = await api.post("/cars", payload);
@@ -191,16 +192,16 @@ const AddCar = () => {
 
               <div>
                 <label
-                  htmlFor="mileage"
+                  htmlFor="kilometers_driven"
                   className="block mb-1 text-sm font-medium text-gray-700"
                 >
-                  Mileage (km) <span className="text-red-500">*</span>
+                  kilometers_driven (km) <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="number"
-                  id="mileage"
-                  name="mileage"
-                  value={formData.mileage}
+                  id="kilometers_driven"
+                  name="kilometers_driven"
+                  value={formData.kilometers_driven}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   required
@@ -234,7 +235,7 @@ const AddCar = () => {
             <label
               htmlFor="fuelType"
               className="block mb-1 text-sm font-medium text-gray-700"
-            >
+            > 
               Fuel Type <span className="text-red-500">*</span>
             </label>
             <select

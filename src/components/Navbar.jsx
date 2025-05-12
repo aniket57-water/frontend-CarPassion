@@ -1,3 +1,4 @@
+// D:\client_CarPassion4\src\components\Navbar.jsx
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -12,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="shadow-md bg-red">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -30,6 +31,15 @@ const Navbar = () => {
               }`}
             >
               Home
+            </Link>
+
+            <Link
+              to="/search"
+              className={`px-3 py-2 text-sm font-medium ${
+                location.pathname === '/' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+              }`}
+            >
+              Filter Cars
             </Link>
             
             {currentUser ? (
@@ -73,7 +83,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="pt-2 pb-3 space-y-1 bg-white shadow-lg md:hidden">
+        <div className="pt-2 pb-3 space-y-1 shadow-lg bg-red md:hidden">
           <Link
             to="/"
             className={`block px-3 py-2 text-base font-medium ${

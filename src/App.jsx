@@ -1,3 +1,4 @@
+// D:\client_CarPassion4\src\App.jsx
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext';
@@ -12,10 +13,12 @@ import AddCar from './pages/admin/AddCar';
 import EditCar from './pages/admin/EditCar';
 import NotFound from './pages/NotFound';
 
+
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CarSearch from './components/CarSearch';
 
 function App() {
   const { checkSession } = useAuth();
@@ -31,8 +34,10 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
+          <Route path="/search" element={<CarSearch />} />
           <Route path="/cars/:id" element={<CarDetail />} />
           <Route path="/admin/login" element={<Login />} />
+          
           
           {/* Protected Admin Routes */}
           <Route path="/admin" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />

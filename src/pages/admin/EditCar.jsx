@@ -1,3 +1,4 @@
+// D:\client_CarPassion4\src\pages\admin\EditCar.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
@@ -13,7 +14,7 @@ const EditCar = () => {
     model: '',
     year: '',
     price: '',
-    mileage: '',
+    kilometers_driven: '',
     color: '',
     fuelType: '',
     transmission: 'Automatic',
@@ -35,9 +36,9 @@ const EditCar = () => {
       setFormData({
         make: response.data.car.make,
         model: response.data.car.model,
-        year: response.data.car.year.toString(),
-        price: response.data.car.price.toString(),
-        mileage: response.data.car.mileage.toString(),
+        year: response.data.car.year,
+        price: response.data.car.price,
+        kilometers_driven: response.data.car.kilometers_driven,
         color: response.data.car.color,
         fuelType: response.data.car.fuelType,
         transmission: response.data.car.transmission,
@@ -90,7 +91,7 @@ const EditCar = () => {
     
     // Validate required fields
     if (!formData.make || !formData.model || !formData.year || !formData.price || 
-        !formData.mileage || !formData.color || !formData.fuelType || 
+        !formData.kilometers_driven || !formData.color || !formData.fuelType || 
         !formData.transmission || !formData.description) {
       toast.error('Please fill in all required fields');
       return;
@@ -104,7 +105,7 @@ const EditCar = () => {
         ...formData,
         year: Number(formData.year),
         price: Number(formData.price),
-        mileage: Number(formData.mileage)
+        kilometers_driven: Number(formData.kilometers_driven)
       };
       
       const response = await api.put(`/cars/${id}`, payload);
@@ -199,7 +200,7 @@ const EditCar = () => {
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <label htmlFor="price" className="block mb-1 text-sm font-medium text-gray-700">
-                  Price ($) <span className="text-red-500">*</span>
+                  Price (Rs) <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="number"
@@ -207,25 +208,22 @@ const EditCar = () => {
                   name="price"
                   value={formData.price}
                   onChange={handleChange}
-                  min="0"
-                  step="100"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="mileage" className="block mb-1 text-sm font-medium text-gray-700">
-                  Mileage (km) <span className="text-red-500">*</span>
+                <label htmlFor="kilometers_driven" className="block mb-1 text-sm font-medium text-gray-700">
+                  Kilometers Driven (km) <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="number"
-                  id="mileage"
-                  name="mileage"
+                  id="kilometers_driven"
+                  name="kilometers_driven"
                   min={0}
-                  max={50}
-                  step={1}
-                  value={formData.mileage}
+                  step={1000}
+                  value={formData.kilometers_driven}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   required
