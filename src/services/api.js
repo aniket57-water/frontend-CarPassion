@@ -1,7 +1,8 @@
 // D:\client_CarPassion4\src\services\api.js
 import axios from 'axios';
 
-const baseURL = 'https://car-passion-server-may11.onrender.com/api'
+// const baseURL = 'https://car-passion-server-may11.onrender.com/api'
+const baseURL = `${import.meta.env.VITE_API_URL}/api`; // Use localhost for development
 
 // Add retry logic for mobile devices
 const api = axios.create({
@@ -21,12 +22,12 @@ api.interceptors.response.use(
     // Log more details about the error
     const config = error.config
 
-    if(error.message === 'Network Error' && !config._retry){
+    if (error.message === 'Network Error' && !config._retry) {
       config._retry = true;
-      
+
       // Wait 1 second before retrying
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       return api(config);
     }
     return Promise.reject(error);
